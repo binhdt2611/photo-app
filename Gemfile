@@ -6,6 +6,13 @@ ruby '2.7.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
 
+# Install Devise authentication
+gem 'devise'
+gem 'twitter-bootstrap-rails', '~> 5.0'
+gem 'devise-bootstrap-views'
+
+gem 'jquery-rails'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
