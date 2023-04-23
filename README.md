@@ -84,4 +84,33 @@ rails g devise:views:bootstrap_templates
 
 * Deployment instructions
 
+# Setup Stripe Payment
+1. Sign-up Stripe account at stripe.com
+2. Copy publishable and secret api_key
+3. Add gem stripe to Gemfile
+```
+gem 'stripe'
+```
+
+Runs bundle to install
+```
+bundle install --without production
+```
+4. Create config/initializers/stripe.rb to store Stripe API_KEYs, paste this content to the file
+```
+Rails.configuration.stripe = {
+  :publishable_key => ENV['STRIPE_TEST_PUBLISHABLE_KEY'],
+  :secret_key => ENV['STRIPE_TEST_SECRET_KEY']
+}
+
+Stripe.api_key = Rails.configuration.stripe[:secret_key]
+```
+
+
+# Payment Models
+1. Create Payment model and run db:migrate
+```
+rails generate model Payment email:string token:string user_id:integer
+rake db:migrate
+```
 * ...
