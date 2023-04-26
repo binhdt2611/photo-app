@@ -14,7 +14,7 @@ Rails.application.configure do
 
   # Configure action mailer - Enable in production - but we don't have production yet so disable temporary
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'custom.domain.com', :protocal => 'https' }
+  config.action_mailer.default_url_options = { :host => 'photo-app-production-ba2e.up.railway.app', :protocal => 'https' }
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
