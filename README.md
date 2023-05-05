@@ -113,4 +113,46 @@ Stripe.api_key = Rails.configuration.stripe[:secret_key]
 rails generate model Payment email:string token:string user_id:integer
 rake db:migrate
 ```
+
+# Image Upload
+1. Add new gems
+```
+# Use for upload image
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-core', '2.1.0'
+```
+2. Create Image Model
+```
+rails generate scaffold Image name:string picture:string user:references
+rake db:migrate
+rails g bootstrap:themed Images
+
+# Add has_many :images to app/models/user.rb
+```
+3. Create uploader Picture
+```
+rails generate uploader Picture
+
+# Add to app/model/image.rb
+mount_uploader :picture, PictureUploader
+
+```
+4. Pull up the _form.html.erb partial under app/views/images folder and update it
+
+```
+<%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
+```
+
+```<div class="controls">
+
+<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+
+</div>```
+
+
+5. Update your create action in the images_controller.rb file under app/controllers folder by adding the line below under @image = Image.new...:
+@image.user = current_user
+
+6. Modify app/views/images/show.html.erb
 * ...
